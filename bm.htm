@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+			background: black;
+	padding: 0px;
+	margin: 0px;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+div#player {
+	width: 400px;
+	height: 200px;
+	background: black;
+	display: block;
+}
+h1{
+	color: white;
+}
+label{
+	color: white;
+}
+#canvas2{
+	width: 100%;
+}
+#drop{
+	width: 100px;
+	height: 100px;
+	background: white;
+	
+}
+#box{
+	width: 400px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+}
+.ctl{
+	width: 400px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.ctl button{
+	width: 80px;
+	padding: 20px 0;
+	border:2px solid white;
+	color: white;
+	background-color: black;
+	cursor: pointer
+}
+.label{
+	width: 400px;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;  
+	overflow: hidden;
+	height: 200px;
+}
+.title{
+	max-width: 100px;
+}
+
+.ctlpanel{
+	position:relative;
+	background-color: rgba(0,0,0,0.9);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	right: 0px;
+	width: 400px;
+	top: -900px
+	height: 800px;
+	z-index: 5;
+	padding: 50px 0;
+	display: none;
+}
+
+.ctlpanel input[type="range"]{
+    width: 300px;
+    outline: none;
+
+}
+
+.ctlpanel input[type="button"]{
+	color: blue;
+	border-radius: 10px;
+	outline: none;
+	padding: 10px 0;
+	width: 100px;
+	height: 50px;
+}
+
+.navbar{
+	width: 400px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+.navbar button{
+	width: 80px;
+	padding: 20px 0;
+	border:2px solid white;
+	color: white;
+	background-color: black;
+	cursor: pointer;
+}
+.container{
+	position: absolute;
+	height: 800px;
+	width: 400px;
+
+}
+.addpanel {
+	position: relative;
+	color: red;
+	height: 400px;
+	width: 400px;
+	background: transparent;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+
+.addpanel input[type="file"]{
+	display: none;
+}
+
+#closeadd{
+	background-color: red;
+	margin: 30px 0;
+	width: 100%;
+	padding: 10px 0;
+	outline: none;
+	box-shadow: 0px 0px 0.2px 0.2px white;
+	border-radius: 2px;
+	border:none;
+}
+.addpannel span{
+	margin-right: 0;
+}
+
+.picker{
+	padding: 20px 30px;
+	background: red;
+	margin: 20px 0;
+	border-radius: 10px;
+
+}
+
+.addpanel #drop{
+	color: red;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 300px;
+	height: 200px;
+	border: 2px solid white;
+	background-color: black;
+	border-radius: 10px;
+}
+
+.splash{
+	margin: 20px 0;
+	position: relative;
+	height: 800px;
+	width: 400px;
+	z-index: 3;
+	background: black;
+
+}
+
+	</style>
+
+
+</head>
+<body>
+
+	<audio src=""></audio>
+	<div class="container">
+	<div class="ctlpanel">
+	<label for="volume">Volume</label>
+		<input type="range" max="2" min="0" value="1" step="0.01" id="volume" title="volume"><br>
+		<label for="pan">balance</label>
+		<input type="range" max="1" min="-1" value="0" step="0.01" id="pan" title="balance"><br>
+
+
+			<label> trebble</label>
+               <input type="range" max="1" min="0" value="0" id="trebble" step="0.001">
+			<br>
+			<label> bass</label>
+               <input type="range" max="2" min="0.5" value="0.5" id="bass" step="0.001">
+			<br><br>
+
+			<div>
+               <input type="button" value="Reset effects" id="reset">
+               <input type="button" value="Back" id="back">
+			</div>
+			
+
+                
+		</div>
+
+
+		
+
+
+<div class="addpanel">
+	
+            <label for="cc" class="picker">Choose mp3</label>
+			<input type="file" name="tracks" multiple accept="audio/mp3" id="cc">
+			<div id="drop">Or DROP mp3s here</div>
+			<button id="closeadd">Back</button>
+		   </div>
+		
+
+<div class="splash">
+        <div class="navbar"><button id="showEq">EQ</button><button id="showAdd">Add Track</button></div>
+		<div class="label"><h1 class="title">Tracklist is empty</h1></div>
+		 <div id="player">
+	<canvas id="canvas2"></canvas>
+       </div>
+		<div id="box">
+         <h3 id="z">00:00</h3>
+         <input type="range" id="slider" min="0" max="100" value="0" style="width:100%; margin: 0 10px;">
+         <h3 id="a">00:00</h3>
+     </div>
+     <div class="ctl">
+        <button id="iconb">prev</button>   
+        <button id="icon">Play</button>   
+        <button id="iconf">Next</button>   
+    </div>
+</div>
+ </div>
+       <script type="text/javascript" src="main.js"></script>
+
+
+</body>
+</html>
